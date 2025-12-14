@@ -1,0 +1,67 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
+  "linter": {
+    "enabled": true,
+    
+    "assist": {
+      "actions": {
+        "source": {
+        "useSortedProperties": "on"
+        }
+      }
+
+    },
+
+    "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noExplicitAny": "off",
+        "noCommentText": "warn",
+        "noImplicitAnyLet": "warn",
+        "noThenProperty": "warn",
+        "noShadowRestrictedNames": "warn",
+        "noEmptyBlockStatements": "error",
+        "noLabelVar": "error"
+      },
+      "complexity": {
+        "noForEach": "error",
+        "noImportantStyles": "error"
+      },
+      "correctness": {
+        "useExhaustiveDependencies": "warn",
+        "noInvalidConstructorSuper": "error",
+        "noInvalidDirectionInLinearGradient": "error",
+        "noInvalidGridAreas": "error",
+        "noInvalidPositionAtImportRule": "error",
+        "noMissingVarFunction": "error",
+        "noUnknownMediaFeatureName": "error",
+        "noUnknownProperty": "error",
+        "noUnknownPseudoClass": "error",
+        "noUnknownPseudoElement": "error",
+        "noUnknownTypeSelector": "error"
+      },
+      "style": {
+        "noUnusedTemplateLiteral": "warn",
+        "noParameterAssign": "error",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useEnumInitializers": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error"
+      },
+      "performance": {
+        "noAccumulatingSpread": "warn"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "warn",
+        "useGenericFontNames": "error"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true
+  }
+}

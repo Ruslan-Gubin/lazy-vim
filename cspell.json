@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en,ru",
+  "dictionaryDefinitions": [
+    {
+      "name": "cspell.json",
+      "path": "./spell/en.utf-8.add",
+      "addWords": true
+    },
+    {
+      "name": "ru-ru",
+      "path": "./spell/ru_ru.trie.gz",
+      "description": "Russian Dictionary (Combined)",
+      "ignoreForbiddenWords": true
+    }
+  ],
+  "dictionaries": [
+    "cspell.json",
+    "ru-ru",
+  ],
+  "ignorePaths": [
+    "node_modules",
+    "dist",
+    "build",
+    "/en.utf-8.add"
+  ],
+  "words": [
+    "nvim",
+    "neovim"
+  ]
+}
