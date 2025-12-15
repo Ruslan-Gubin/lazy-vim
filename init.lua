@@ -3,7 +3,7 @@ require("config.autocmds")
 require("config.lazy")
 require("config.keys")
 
-require("kanagawa").load "wave"
+vim.cmd("colorscheme kanagawa")
 
 local ts_server = vim.g.lsp_typescript_server or "ts_ls" 
 

@@ -12,9 +12,15 @@ return {
       local telescope = require("telescope")
      telescope.setup({
       defaults = {
-        i = { ["<c-t>"] = open_with_trouble },
-        n = { ["<c-t>"] = open_with_trouble },
-      }
+        layout_strategy = "horizontal",
+        layout_config = {
+          horizontal = {
+              prompt_position = "top",
+              preview_width = 0.5,
+          },
+        },
+        sorting_strategy = "ascending",
+      },
     })
 
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
