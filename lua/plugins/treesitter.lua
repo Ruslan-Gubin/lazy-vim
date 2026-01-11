@@ -5,7 +5,7 @@ return {
     build = ":TSUpdate",
   config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = { "python" },
+      ensure_installed = { "vue", "css" },
       sync_install = false,-- Но если включена автоматическая установка, никакие парсеры прописывать не надо
       auto_install = true,
       highlight = {

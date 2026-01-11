@@ -16,6 +16,8 @@ vim.lsp.enable {
    "biome",
    "html",
    "css_variables",
+   "vtsls",
+   "vue_ls"
 }
 
 
