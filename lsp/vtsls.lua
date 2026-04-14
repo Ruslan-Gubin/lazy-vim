@@ -1,67 +1,120 @@
----@brief
----
---- https://github.com/yioneko/vtsls
----
---- `vtsls` can be installed with npm:
---- ```sh
---- npm install -g @vtsls/language-server
---- ```
----
---- To configure a TypeScript project, add a
---- [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
---- or [`jsconfig.json`](https://code.visualstudio.com/docs/languages/jsconfig) to
---- the root of your project.
----
---- ### Vue support
----
---- Since v3.0.0, the Vue language server requires `vtsls` to support TypeScript.
----
---- - `location` MUST be defined. If the plugin is installed in `node_modules`, `location` can have any value.
---- - `languages` must include vue even if it is listed in filetypes.
---- - `filetypes` is extended here to include Vue SFC.
----
---- You must make sure the Vue language server is setup. For example,
----
---- ```
---- vim.lsp.enable('vue_ls')
---- ```
----
---- See `vue_ls` section and https://github.com/vuejs/language-tools/wiki/Neovim for more information.
----
---- ### Monorepo support
----
---- `vtsls` supports monorepos by default. It will automatically find the `tsconfig.json` or `jsconfig.json` corresponding to the package you are working on.
---- This works without the need of spawning multiple instances of `vtsls`, saving memory.
----
---- It is recommended to use the same version of TypeScript in all packages, and therefore have it available in your workspace root. The location of the TypeScript binary will be determined automatically, but only once.
+local ROOT_MARKERS = { "tsconfig.json", "jsconfig.json", "package.json", ".git" }
 
----@type vim.lsp.Config
+local _vtsls_cmd = nil
+local function get_vtsls_cmd()
+	if _vtsls_cmd then
+		return _vtsls_cmd
+	end
+	local handle = io.popen("node --version 2>/dev/null")
+	if handle then
+		local version = handle:read("*l")
+		handle:close()
+		if version then
+			local major = tonumber(version:match("^v?(%d+)"))
+			if major and major >= 20 then
+				_vtsls_cmd = { "vtsls", "--stdio" }
+				return _vtsls_cmd
+			end
+		end
+	end
+	-- Node < 20 or not found, use fnm with Node 24
+	_vtsls_cmd = { "fnm", "exec", "--using=24", "vtsls", "--stdio" }
+	return _vtsls_cmd
+end
+
 return {
-  cmd = { 'vtsls', '--stdio' },
-  init_options = {
-    hostInfo = 'neovim',
-  },
-  filetypes = {
-    'vue'
-  },
-  root_dir = function(bufnr, on_dir)
-    -- The project root is where the LSP can be started from
-    -- As stated in the documentation above, this LSP supports monorepos and simple projects.
-    -- We select then from the project root, which is identified by the presence of a package
-    -- manager lock file.
-    local root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock' }
-    -- Give the root markers equal priority by wrapping them in a table
-    root_markers = vim.fn.has('nvim-0.11.5') == 1 and { root_markers, { '.git' } }
-      or vim.list_extend(root_markers, { '.git' })
+	cmd = get_vtsls_cmd(),
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx",
+	},
+	root_dir = function(bufnr, on_dir)
+		local fname = vim.api.nvim_buf_get_name(bufnr)
+		local filetype = vim.bo[bufnr].filetype
 
-    -- exclude deno
-    if vim.fs.root(bufnr, { 'deno.json', 'deno.jsonc', 'deno.lock' }) then
-      return
-    end
+		local valid_filetypes = {
+			javascript = true,
+			javascriptreact = true,
+			["javascript.jsx"] = true,
+			typescript = true,
+			typescriptreact = true,
+			["typescript.tsx"] = true,
+		}
 
-    -- We fallback to the current working directory if no project root is found
-    local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
+		if not valid_filetypes[filetype] then
+			on_dir(nil)
+			return
+		end
 
-    on_dir(project_root)
-  end,
+		-- Find workspace root
+		local workspace_root = vim.fs.dirname(vim.fs.find(ROOT_MARKERS, { path = fname, upward = true })[1])
+		on_dir(workspace_root or vim.fn.getcwd())
+	end,
+	settings = {
+		complete_function_calls = true,
+		vtsls = {
+			enableMoveToFileCodeAction = true,
+			autoUseWorkspaceTsdk = true,
+			experimental = {
+				completion = {
+					enableServerSideFuzzyMatch = true,
+				},
+			},
+		},
+		typescript = {
+			updateImportsOnFileMove = { enabled = "always" },
+			suggest = {
+				completeFunctionCalls = true,
+			},
+			inlayHints = {
+				-- enumMemberValues = { enabled = true },
+				-- functionLikeReturnTypes = { enabled = true },
+				-- parameterNames = { enabled = "literals" },
+				-- parameterTypes = { enabled = false },
+				-- propertyDeclarationTypes = { enabled = false },
+				-- variableTypes = { enabled = false },
+
+        includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all'
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = false,
+        includeInlayVariableTypeHints = false,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+        includeInlayPropertyDeclarationTypeHints = false,
+        includeInlayFunctionLikeReturnTypeHints = false, -- return function
+        includeInlayEnumMemberValueHints = false,
+			},
+		},
+    javascript = {
+      -- Inlay Hints preferences
+      inlayHints = {
+        -- You can set this to 'all' or 'literals' to enable more hints
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+        includeInlayVariableTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+      },
+      -- Code Lens preferences
+      implementationsCodeLens = {
+        enabled = true,
+      },
+      referencesCodeLens = {
+        enabled = true,
+        showOnAllFunctions = true,
+      },
+      format = {
+        indentSize = vim.o.shiftwidth,
+        convertTabsToSpaces = vim.o.expandtab,
+        tabSize = vim.o.tabstop,
+      },
+    },
+	},
 }
+

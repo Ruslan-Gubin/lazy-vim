@@ -17,7 +17,7 @@
   ],
   "dictionaries": [
     "cspell.json",
-    "ru-ru",
+    "ru-ru"
   ],
   "ignorePaths": [
     "node_modules",

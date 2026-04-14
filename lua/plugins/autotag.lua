@@ -1,7 +1,9 @@
-return {
-  "windwp/nvim-ts-autotag",
-  event = "VeryLazy",
-  config = function()
-    require("nvim-ts-autotag").setup()
-  end,
-}
+vim.pack.add({
+	{
+		src = "https://github.com/windwp/nvim-ts-autotag",
+		version = "main",
+	},
+})
+
+require("nvim-ts-autotag").setup()
+

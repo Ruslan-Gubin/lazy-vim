@@ -1,27 +1,26 @@
-return {
-  "nvim-neo-tree/neo-tree.nvim",
-  branch = "v3.x",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",
-    "MunifTanjim/nui.nvim",
+vim.pack.add({
+  {
+    src = 'https://github.com/nvim-neo-tree/neo-tree.nvim',
+    version = vim.version.range('3')
   },
-  lazy = false,
-  config = function()
-    require("neo-tree").setup({
-      close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
-      popup_border_style = "NC", -- or "" to use 'winborder' on Neovim v0.11+
-      enable_git_status = true,
-      enable_diagnostics = true,
+  "https://github.com/nvim-lua/plenary.nvim",
+  "https://github.com/MunifTanjim/nui.nvim",
+  "https://github.com/nvim-tree/nvim-web-devicons",
+})
 
+
+require("neo-tree").setup({
+close_if_last_window = true,
+popup_border_style = "NC",
+	enable_git_status = true,
 
     sources = {
       "filesystem",
       "buffers",
-      -- "git_status",
+      "git_status",
       "document_symbols",
     },
-      
+
       event_handlers = {
         {
           event = "file_open_requested",
@@ -124,7 +123,7 @@ window = {
       },
     },
 
-follow_current_file = {
+	follow_current_file = {
       enabled = true, -- This will find and focus the file in the active buffer every time
       --               -- the current file is changed while the tree is open.
       leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
@@ -174,12 +173,13 @@ follow_current_file = {
             ["<esc>"] = "close",
           }
         }
-        -- ["<esc>"] = "noop", -- if you want to use normal mode
+        -- ["<esc>"] = "noop", -- if yo[118;1:3uu want to use normal mode
         -- ["key"] = function(state, scroll_padding) ... end,
       },
     },
       commands = {}, -- Add a custom command or override a global one using the same function name
   },
+
 buffers = {
     follow_current_file = {
       enabled = true, -- This will find and focus the file in the active buffer every time
@@ -208,34 +208,5 @@ buffers = {
       },
     },
   },
-  -- git_status = {
-  --   window = {
-  --     position = "float",
-  --     mappings = {
-  --       ["A"] = "git_add_all",
-  --       ["gu"] = "git_unstage_file",
-  --       ["gU"] = "git_undo_last_commit",
-  --       ["ga"] = "git_add_file",
-  --       ["gt"] = "git_toggle_file_stage",
-  --       ["gr"] = "git_revert_file",
-  --       ["gc"] = "git_commit",
-  --       ["gp"] = "git_push",
-  --       ["gg"] = "git_commit_and_push",
-  --       -- ["o"] = {
-  --       --   "show_help",
-  --       --   nowait = false,
-  --       --   config = { title = "Order by", prefix_key = "o" },
-  --       -- },
-  --       ["oc"] = { "order_by_created", nowait = true },
-  --       ["od"] = { "order_by_diagnostics", nowait = true },
-  --       ["om"] = { "order_by_modified", nowait = true },
-  --       ["on"] = { "order_by_name", nowait = true },
-  --       ["os"] = { "order_by_size", nowait = true },
-  --       ["ot"] = { "order_by_type", nowait = true },
-  --     },
-  --   },
-  -- },
 
-    })
-  end,
-}
+})

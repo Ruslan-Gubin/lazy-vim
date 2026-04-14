@@ -1,8 +1,12 @@
-return {
-	'akinsho/bufferline.nvim', 
-	version = "*", 
-	depenaencies = 'nvim-tree/nvim-web-devicons',
-  opts = {
+vim.pack.add({
+	{
+		src = "https://github.com/akinsho/bufferline.nvim",
+		version = "main",
+	},
+})
+
+require("bufferline").setup({
+
       options = {
         separator_style = "slant",
         diagnostics = "nvim_lsp",
@@ -15,10 +19,5 @@ return {
           },
         },
       }
-    },
-	keys = {
-		{"<Tab>", "<cmd>bn<cr>", desc = "prev buffer "},
-		{"<S-Tab>", "<cmd>bp<cr>", desc = "next buffer "},
-		{"<leader>x", "<cmd>bdelete<CR>", desc = "close buffer "},
-	},
-}
+})
+

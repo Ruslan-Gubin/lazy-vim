@@ -1,11 +1,29 @@
-local Lsp = require "utils.lsp"
--- NOTE: mise use -g lua-language-server
--- Credit to https://lsp-zero.netlify.app/blog/lsp-config-overview.html
+-- mac: brew install lua-language-server
+
+---@type vim.lsp.Config
 return {
-  cmd = { "lua-language-server" },
-  on_attach = Lsp.on_attach,
-  filetypes = { "lua" },
-  root_markers = { ".luarc.json", ".luarc.jsonc" },
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { ".luarc.json", ".luarc.jsonc" },
+	settings = {
+		Lua = {
+			completion = { callSnippet = "Replace" },
+			-- Using stylua for formatting.
+		  format = { enable = false },
+			hint = {
+				enable = true,
+				arrayIndex = "Disable",
+			},
+			runtime = {
+				version = "LuaJIT",
+			},
+			workspace = {
+				checkThirdParty = false,
+				library = {
+					vim.env.VIMRUNTIME,
+					"${3rd}/luv/library",
+				},
+			},
+		},
+	},
 }
-
-
