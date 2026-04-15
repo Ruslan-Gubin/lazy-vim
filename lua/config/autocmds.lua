@@ -23,12 +23,12 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
 })
 
 -- Подсветка скопированного текста при нажатии y
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = augroup("highlight_yank"),
-	callback = function()
-		(vim.hl or vim.highlight).on_yank()
-	end,
-})
+-- vim.api.nvim_create_autocmd("TextYankPost", {
+-- 	group = augroup("highlight_yank"),
+-- 	callback = function()
+-- 		(vim.hl or vim.highlight).on_yank()
+-- 	end,
+-- })
 
 -- Автоматическое выравнивание сплитов при изменении размера окна (с debounce 100ms)
 local _resize_timer = nil

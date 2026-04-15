@@ -83,6 +83,9 @@ wk.add({
 -- NeoTree
   { "<leader>e", cmd [[Neotree toggle]], desc = "Explorer NeoTree" },
 
+-- Color picker
+  { "<leader>up", cmd [[EasyColor]], desc = "Easy color picker" },
+
 	{
 		"<leader>b",
 		group = "buffer",

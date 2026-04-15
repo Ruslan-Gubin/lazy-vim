@@ -13,3 +13,5 @@ require("plugins.coding")
 require("plugins.lualine")
 require("plugins.bufferline")
 require("plugins.stylelint")
+require("plugins.easycolor")
+
