@@ -51,6 +51,11 @@
       "src": "https://github.com/windwp/nvim-autopairs",
       "version": "'master'"
     },
+    "nvim-stylelint": {
+      "rev": "01097a49d3a001ed8b32e77f4b469f5f6e3d5032",
+      "src": "https://github.com/leiswatch/nvim-stylelint",
+      "version": "'main'"
+    },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
