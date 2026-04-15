@@ -6,8 +6,8 @@ vim.pack.add({
 })
 
 require("bufferline").setup({
-
       options = {
+        sort_by = "insert_after_current",
         separator_style = "slant",
         diagnostics = "nvim_lsp",
         offsets = {
