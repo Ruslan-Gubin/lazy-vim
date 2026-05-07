@@ -1,4 +1,4 @@
--- require("config.theme")
+require("config.theme")
 require("config.options")
 require("config.session")
 require("config.diagnostics")

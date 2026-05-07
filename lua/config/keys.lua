@@ -11,6 +11,9 @@ local opts = { noremap = true, silent = true }
 --keywordprg
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
+--default terminal
+map("n", "\\", "<cmd>terminal<cr>", { desc = "Default bottom terminal" })
+
 -- location list
 map("n", "<leader>xl", function()
 	local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)

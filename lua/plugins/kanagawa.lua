@@ -7,6 +7,7 @@ vim.pack.add({
 
 
 require("kanagawa").setup({
+    transparent = true,
     dimInactive = true,
     colors = {
       palette = {
@@ -23,7 +24,8 @@ require("kanagawa").setup({
     },
 
     overrides = function(colors)
-      return {}
+      return {
+      }
     end,
     theme = 'wave', -- wave / lotus / dragon
     background = {

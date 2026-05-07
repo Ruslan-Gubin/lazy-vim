@@ -3,7 +3,7 @@ local lsp = vim.lsp
 -- ESLint flat config patterns (ESLint 9+)
 local ESLINT_FLAT_CONFIG = {
 	"eslint.config.js",
-	"eslint.config.mjs",
+	"slint.config.mjs",
 	"eslint.config.cjs",
 	"eslint.config.ts",
 	"eslint.config.mts",
@@ -85,7 +85,7 @@ return {
 	settings = {
 		validate = "on",
 		packageManager = nil,
-		useESLintClass = false,
+		useESLintClass = true,
 		experimental = {
 			useFlatConfig = true, -- ESLint 9+ flat config only
 		},

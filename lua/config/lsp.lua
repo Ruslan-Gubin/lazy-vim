@@ -95,11 +95,11 @@ vim.lsp.enable({
    "html",
    "css_variables",
    "biome",
-   "gopls",
-   "rust_analyser",
    "zls",
    "helm_ls",
    "yamlls",
+   -- "gopls",
+   -- "rust_analyser",
    -- "vue_ls",
 })
 

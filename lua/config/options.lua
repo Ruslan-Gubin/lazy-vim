@@ -21,8 +21,9 @@ opt.autoindent = true -- Copy indent from current line
 -- Search settings
 opt.ignorecase = true -- Ignore case
 opt.smartcase = true -- Don't ignore case with capitals
-opt.hlsearch = false -- Don't highlight search results
+opt.hlsearch = true -- Highlight search results
 opt.incsearch = true -- Show matches as you type
+opt.guicursor = "n-v-c:block,i:ver100"
 
 -- Visual settings
 opt.termguicolors = true -- before false Enable 24-bit colors

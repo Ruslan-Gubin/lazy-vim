@@ -14,4 +14,6 @@ require("plugins.lualine")
 require("plugins.bufferline")
 require("plugins.stylelint")
 require("plugins.easycolor")
+-- require("plugins.indentline")
+require("plugins.paper")
 

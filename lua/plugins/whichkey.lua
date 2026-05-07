@@ -79,6 +79,8 @@ wk.add({
 		{"<Tab>", "<cmd>bn<cr>", desc = "prev buffer "},
 		{"<S-Tab>", "<cmd>bp<cr>", desc = "next buffer "},
 		{"<leader>x", "<cmd>bdelete<CR>", desc = "close buffer "},
+    { "<C-,>", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer left" },
+    { "<C-.>", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer right" },
 
 -- NeoTree
   { "<leader>e", cmd [[Neotree toggle]], desc = "Explorer NeoTree" },

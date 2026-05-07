@@ -1,0 +1,22 @@
+{
+  "linter": {
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUndeclaredVariables": "error",
+        "useExhaustiveDependencies": "error",
+        "noVar": "warn",
+        "noUnusedVariable": "off"
+      },
+      "suspicious": {
+        "noConsole": "error",
+        "noDebugger": "error",
+        "noVar": "warn"
+      }
+    }
+  },
+  "formatter": {
+    "quoteStyle": "single",
+    "semicolons": "asNeeded"
+  }
+}

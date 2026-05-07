@@ -10,6 +10,10 @@
       "src": "https://github.com/akinsho/bufferline.nvim",
       "version": "'main'"
     },
+    "catppuccin": {
+      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
+      "src": "https://github.com/catppuccin/nvim"
+    },
     "codeme.nvim": {
       "rev": "54810c83d183c6e69f9ad910a4a410ed80958d66",
       "src": "https://gitlab.com/tduyng/codeme.nvim"
@@ -27,6 +31,11 @@
       "rev": "327135955e27ca8568cf4782ffc7840a89f31fef",
       "src": "https://github.com/neph-iap/easycolor.nvim",
       "version": "'main'"
+    },
+    "indent-blankline.nvim": {
+      "rev": "d28a3f70721c79e3c5f6693057ae929f3d9c0a03",
+      "src": "https://github.com/lukas-reineke/indent-blankline.nvim",
+      "version": "'master'"
     },
     "kanagawa.nvim": {
       "rev": "aef7f5cec0a40dbe7f3304214850c472e2264b10",
@@ -87,6 +96,11 @@
     "toggleterm.nvim": {
       "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
       "src": "https://github.com/akinsho/toggleterm.nvim",
+      "version": "'main'"
+    },
+    "vim-paper": {
+      "rev": "d8decc44569aec6247bae54d971e658bb8108399",
+      "src": "https://github.com/yorickpeterse/vim-paper",
       "version": "'main'"
     },
     "which-key.nvim": {

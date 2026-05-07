@@ -21,5 +21,6 @@ require("null-ls").setup({
 	sources = {
 		cspell.diagnostics.with({ config = config }),
 		cspell.code_actions.with({ config = config }),
+		cspell.code_actions.with({ config = config }),
 	},
 })

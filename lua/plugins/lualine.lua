@@ -1,9 +1,14 @@
 vim.pack.add({
-    'https://github.com/nvim-lualine/lualine.nvim'
+    'https://github.com/nvim-lualine/lualine.nvim',
 })
 
+
 require("lualine").setup({
-        sections = {
+  options = {
+    theme = 'codedark',
+
+  },
+  sections = {
           lualine_c = {
             'filename',
             'lsp_status',
@@ -24,5 +29,9 @@ require("lualine").setup({
             'fileformat',
             'filetype',
           }
-        }
+        },
+        theme = {
+              normal = { c = { fg = "#bbc2cf", bg = "#202328" }, x = { fg = "#bbc2cf", bg = "#202328" } },
+              inactive = { c = { fg = "#bbc2cf", bg = "#202328" , x = { fg = "#bbc2cf", bg = "#202328" }} },
+          },
 })
